@@ -71,10 +71,14 @@ const UserCard = ({
         />
       </div>
 
-      <div className="grid bg-gray-600 text-yellow-50 px-5 gap-y-1 py-1 mt-28">
-        <div>First Name: {name?.first}</div>
-        <div>Last Name: {name?.last}</div>
-        <div>Email: {email}</div>
+      <div className="grid bg-white text-yellow-50 px-5 gap-y-3 py-2 mt-28">
+        <div className="bg-gray-600 px-2 rounded-md">
+          First Name: {name?.first}
+        </div>
+        <div className="bg-gray-600 px-2 rounded-md">
+          Last Name: {name?.last}
+        </div>
+        <div className="bg-gray-600 px-2 rounded-md">Email: {email}</div>
       </div>
     </div>
   );
