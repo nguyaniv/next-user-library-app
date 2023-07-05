@@ -7,9 +7,7 @@ import { generate_uuidv4 } from '../lib/helpers';
 import { validateImage } from 'image-validator';
 import { validationAddUserSchema } from '../lib/validates';
 
-type Props = {};
-
-function NewUserForm({}: Props) {
+function NewUserForm() {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMesssage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
