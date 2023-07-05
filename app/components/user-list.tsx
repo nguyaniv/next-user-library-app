@@ -81,9 +81,9 @@ const UserCard = ({
 };
 
 function UserList({ users }: { users: ShortRequestUserProps[] }) {
-  const [selectedUser, setSelectedUser] = useState<
-    ShortRequestUserProps | object
-  >({});
+  const [selectedUser, setSelectedUser] = useState<ShortRequestUserProps | {}>(
+    {}
+  );
   const [open, setOpen] = useState(false);
   const [isAlert, setIsAlert] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -110,7 +110,7 @@ function UserList({ users }: { users: ShortRequestUserProps[] }) {
     <section className="grid">
       <div>
         <Input
-          className="w-full"
+          className="w-full my-4"
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}

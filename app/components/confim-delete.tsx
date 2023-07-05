@@ -1,11 +1,16 @@
 import Button from '@mui/material/Button';
 import { Modal } from '@mui/material';
 import { deleteUser } from '../features/usersSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { ShortRequestUserProps } from '../types';
 
-type Props = {};
+type Props = {
+  selectedUser: ShortRequestUserProps | {};
+  isAlert: boolean;
+  setIsAlert: Function;
+};
 
-function ConfirmDelete({ selectedUser, isAlert, setIsAlert }: any) {
+function ConfirmDelete({ selectedUser, isAlert, setIsAlert }: Props) {
   const dispatch = useDispatch();
   return (
     <Modal
@@ -27,9 +32,10 @@ function ConfirmDelete({ selectedUser, isAlert, setIsAlert }: any) {
           </Button>
           <Button
             onClick={async () => {
-              console.log(selectedUser);
-
-              dispatch(await deleteUser(selectedUser.uuid));
+              // make typescript happy
+              if ('uuid' in selectedUser) {
+                dispatch(await deleteUser(selectedUser.uuid));
+              }
               setIsAlert(false);
             }}
             className="!bg-red-500 hover:!bg-red-600  !text-white !border-red-600"
