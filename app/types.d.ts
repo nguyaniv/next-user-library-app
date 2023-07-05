@@ -51,7 +51,7 @@ export type ShortRequestUserProps = {
     country?: string;
     city?: string;
     street?: {
-      number?: number;
+      number?: string;
       name?: string;
     };
   };

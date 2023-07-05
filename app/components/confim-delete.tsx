@@ -4,13 +4,17 @@ import { deleteUser } from '../features/usersSlice';
 import { useDispatch } from 'react-redux';
 import { ShortRequestUserProps } from '../types';
 
-type Props = {
-  selectedUser: ShortRequestUserProps | {};
+interface ConfirmDeleteProps {
+  selectedUser: ShortRequestUserProps | null;
   isAlert: boolean;
-  setIsAlert: Function;
-};
+  setIsAlert: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-function ConfirmDelete({ selectedUser, isAlert, setIsAlert }: Props) {
+function ConfirmDelete({
+  selectedUser,
+  isAlert,
+  setIsAlert,
+}: ConfirmDeleteProps) {
   const dispatch = useDispatch();
   return (
     <Modal
@@ -33,7 +37,7 @@ function ConfirmDelete({ selectedUser, isAlert, setIsAlert }: Props) {
           <Button
             onClick={async () => {
               // make typescript happy
-              if ('uuid' in selectedUser) {
+              if (selectedUser && 'uuid' in selectedUser) {
                 dispatch(await deleteUser(selectedUser.uuid));
               }
               setIsAlert(false);

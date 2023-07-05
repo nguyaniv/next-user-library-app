@@ -1,21 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { SetStateAction, useEffect, useState } from 'react';
 import Modal from '@mui/material/Modal';
 import { TextField } from '@mui/material';
-import Image from 'next/image';
 import { useDispatch } from 'react-redux';
 import { editUser } from '../features/usersSlice';
 import Button from '@mui/material/Button';
 import { validationEditUserSchema } from '../lib/validates';
+import { ShortRequestUserProps } from '../types';
+import Image from 'next/image';
 
-function UserEdit({ selectedUser, handleClose, open }: any) {
+interface UserEditProps {
+  selectedUser: ShortRequestUserProps | null;
+  handleCloseEditModal: () => void;
+  open: boolean;
+}
+
+function UserEdit({ selectedUser, handleCloseEditModal, open }: UserEditProps) {
+  console.log(selectedUser);
+
   const [message, setMesssage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [title, setTitle] = useState('');
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [streetName, setStreetName] = useState('');
-  const [streetNumber, setStreetNumber] = useState('');
+  const [streetName, setStreetName] = useState<SetStateAction<string>>('');
+  const [streetNumber, setStreetNumber] = useState<SetStateAction<string>>('');
   const [city, setCity] = useState('');
   const [country, setCountry] = useState('');
 
@@ -31,7 +40,7 @@ function UserEdit({ selectedUser, handleClose, open }: any) {
     setCity(selectedUser?.location?.city || '');
   }, [selectedUser]);
 
-  const onEditUser = async (e: any) => {
+  const onEditUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const isValid = await validationEditUserSchema.validate({
@@ -62,7 +71,7 @@ function UserEdit({ selectedUser, handleClose, open }: any) {
         setSuccessMessage('Edit user successfully');
         setTimeout(() => {
           setSuccessMessage('');
-          handleClose();
+          handleCloseEditModal();
         }, 3000);
       }
     } catch (error: any) {
@@ -75,7 +84,7 @@ function UserEdit({ selectedUser, handleClose, open }: any) {
   return (
     <Modal
       open={open}
-      onClose={handleClose}
+      onClose={handleCloseEditModal}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
       className="grid place-items-center overflow-y-scroll md:overscroll-y-none "
@@ -87,8 +96,11 @@ function UserEdit({ selectedUser, handleClose, open }: any) {
         <h3 className="text-2xl text-center">Edit User card</h3>
         <Image
           className="rounded-full border border-gray-300 place-self-center"
-          alt={`${selectedUser?.first} ${selectedUser?.last}`}
-          src={selectedUser?.userImage}
+          alt={`${selectedUser?.name?.first} ${selectedUser?.name?.last}`}
+          src={
+            selectedUser?.userImage ||
+            `https://th.bing.com/th/id/OIP.DChATZi-4Cbjm18HladbqAHaHF?pid=ImgDet&rs=1`
+          }
           width={150}
           height={200}
         />
@@ -100,7 +112,6 @@ function UserEdit({ selectedUser, handleClose, open }: any) {
                 id="filled-hidden-label-medium"
                 value={title}
                 onChange={(e: any) => setTitle(e.target.value)}
-                onBlur={selectedUser?.handleBlur}
                 variant="outlined"
                 size="medium"
                 placeholder="Mr/Mis"
@@ -194,7 +205,7 @@ function UserEdit({ selectedUser, handleClose, open }: any) {
             Save
           </Button>
           <Button
-            onClick={handleClose}
+            onClick={handleCloseEditModal}
             className="w-32 bg-yellow-500 hover:bg-yellow-600"
             variant="contained"
           >

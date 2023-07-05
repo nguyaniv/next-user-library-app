@@ -36,7 +36,7 @@ export default async function Home() {
   const users: any = await getRandomUsers();
 
   return (
-    <main className="flex flex-col min-h-screen p-5 lg:p-24 gap-y-10 items-center">
+    <main className="flex flex-col min-h-screen p-5 lg:py-24 lg:px-0 gap-y-10 items-center">
       {/* Search */}
       <h1 className="text-5xl">The Users Library</h1>
       <UserList users={users} />
