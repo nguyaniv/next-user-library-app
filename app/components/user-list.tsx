@@ -146,7 +146,10 @@ function UserList({ users }: { users: ShortRequestUserProps[] }) {
               email?.toLowerCase().includes(lowerCaseSearchQuery) ||
               uuid?.toLowerCase().includes(lowerCaseSearchQuery) ||
               location?.country?.toLowerCase().includes(lowerCaseSearchQuery) ||
-              location?.city?.toLowerCase().includes(lowerCaseSearchQuery)
+              location?.city?.toLowerCase().includes(lowerCaseSearchQuery) ||
+              location?.street?.name
+                ?.toLowerCase()
+                .includes(lowerCaseSearchQuery)
             );
           })
           .map((user: ShortRequestUserProps) => (
