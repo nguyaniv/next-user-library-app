@@ -108,7 +108,7 @@ function UserEdit({ selectedUser, handleCloseEditModal, open }: UserEditProps) {
           {
             <div className="grid ">
               <TextField
-                hiddenLabel
+                label="title"
                 id="filled-hidden-label-medium"
                 value={title}
                 onChange={(e: any) => setTitle(e.target.value)}
@@ -121,7 +121,7 @@ function UserEdit({ selectedUser, handleCloseEditModal, open }: UserEditProps) {
 
           <div className="grid">
             <TextField
-              hiddenLabel
+              label="First Name"
               id="filled-hidden-label-medium"
               value={firstName}
               onChange={(e: any) => setFirstName(e.target.value)}
@@ -132,7 +132,7 @@ function UserEdit({ selectedUser, handleCloseEditModal, open }: UserEditProps) {
           </div>
           <div className="grid">
             <TextField
-              hiddenLabel
+              label="Last Name"
               id="filled-hidden-label-medium"
               value={lastName}
               onChange={(e: any) => setLastName(e.target.value)}
@@ -144,7 +144,7 @@ function UserEdit({ selectedUser, handleCloseEditModal, open }: UserEditProps) {
         </div>
         <div className="grid md:grid-flow-col gap-y-5 gap-x-3">
           <TextField
-            hiddenLabel
+            label="Street Name"
             id="filled-hidden-label-medium"
             value={streetName}
             onChange={(e: any) => setStreetName(e.target.value)}
@@ -153,7 +153,7 @@ function UserEdit({ selectedUser, handleCloseEditModal, open }: UserEditProps) {
             placeholder="Street Name"
           />
           <TextField
-            hiddenLabel
+            label="Street number"
             id="filled-hidden-label-medium"
             value={streetNumber}
             onChange={(e: any) => setStreetNumber(e.target.value)}
@@ -162,7 +162,7 @@ function UserEdit({ selectedUser, handleCloseEditModal, open }: UserEditProps) {
             placeholder="Street Number"
           />
           <TextField
-            hiddenLabel
+            label="City"
             id="filled-hidden-label-medium"
             value={city}
             onChange={(e: any) => setCity(e.target.value)}
@@ -171,7 +171,7 @@ function UserEdit({ selectedUser, handleCloseEditModal, open }: UserEditProps) {
             placeholder="City"
           />
           <TextField
-            hiddenLabel
+            label="Country"
             id="filled-hidden-label-medium"
             value={country}
             onChange={(e: any) => setCountry(e.target.value)}
@@ -182,7 +182,7 @@ function UserEdit({ selectedUser, handleCloseEditModal, open }: UserEditProps) {
         </div>
         <div className="place-self-center w-full">
           <TextField
-            hiddenLabel
+            label="Email"
             id="filled-hidden-label-medium"
             value={email}
             onChange={(e: any) => setEmail(e.target.value)}
