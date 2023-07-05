@@ -1,7 +1,4 @@
-import { Button } from '@mui/material';
-import { store } from '.';
 import UserList from './components/user-list';
-import { setUsers } from './features/usersSlice';
 import NewUserForm from './components/NewUserForm';
 import { RequestUserProps } from './types';
 

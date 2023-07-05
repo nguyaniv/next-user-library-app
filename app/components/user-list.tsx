@@ -1,16 +1,16 @@
 'use client';
 
 import Image from 'next/image';
-import { MouseEventHandler, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import UserEdit from './user-edit';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteUser, setUsers } from '../features/usersSlice';
+import { setUsers } from '../features/usersSlice';
 import Button from '@mui/material/Button';
 import ConfirmDelete from './confim-delete';
 import { Input } from '@mui/material';
 import { ShortRequestUserProps } from '../types';
 
-const withPeriod: any = ['Mr', 'Ms', 'Mrs'];
+const withPeriod: any[] = ['Mr', 'Ms', 'Mrs'];
 
 const UserCard = ({
   user,
@@ -90,7 +90,7 @@ function UserList({ users }: { users: ShortRequestUserProps[] }) {
   const storeUsers = useSelector((state: any) => state.users.users);
   const dispatch = useDispatch();
 
-  const openEdit = (user: any) => {
+  const openEdit = (user: ShortRequestUserProps) => {
     setOpen(true);
     setSelectedUser(user);
   };
@@ -108,7 +108,6 @@ function UserList({ users }: { users: ShortRequestUserProps[] }) {
 
   return (
     <section className="grid">
-      {/* Search Component */}
       <div>
         <Input
           className="w-full"
