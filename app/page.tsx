@@ -1,53 +1,10 @@
-import { Button } from '@mui/material';
-import { store } from '.';
 import UserList from './components/user-list';
-import { setUsers } from './features/usersSlice';
 import NewUserForm from './components/NewUserForm';
+import { RequestUserProps } from './types';
 
 export const metadata = {
   title: ' Users library',
   description: 'Home page',
-};
-
-type RequestUserProps = {
-  name: {
-    title: string;
-    first: string;
-    last: string;
-  };
-  email: string;
-  userImage: string;
-  location: {
-    street: {
-      number: number;
-      name: string;
-    };
-    country: string;
-    city: string;
-    postcode: number;
-    coordinates: {
-      latitude: string;
-      longitude: string;
-    };
-    timezone: {
-      offset: string;
-      description: string;
-    };
-  };
-  picture: {
-    thumbnail: string;
-    medium: string;
-    large: string;
-  };
-  login: {
-    uuid: string;
-    username: string;
-    password: string;
-    salt: string;
-    md5: string;
-    sha1: string;
-    sha256: string;
-  };
 };
 
 const getRandomUsers = async () => {

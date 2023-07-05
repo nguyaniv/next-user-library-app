@@ -1,33 +1,16 @@
 'use client';
 
 import Image from 'next/image';
-import { MouseEventHandler, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import UserEdit from './user-edit';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteUser, setUsers } from '../features/usersSlice';
+import { setUsers } from '../features/usersSlice';
 import Button from '@mui/material/Button';
 import ConfirmDelete from './confim-delete';
+import { Input } from '@mui/material';
+import { ShortRequestUserProps } from '../types';
 
-const withPeriod: any = ['Mr', 'Ms', 'Mrs'];
-
-type ShortRequestUserProps = {
-  name?: {
-    title?: string;
-    first?: string;
-    last?: string;
-  };
-  email?: string;
-  userImage: string;
-  location?: {
-    country?: string;
-    city?: string;
-    street?: {
-      number?: number;
-      name?: string;
-    };
-  };
-  uuid?: string;
-};
+const withPeriod: any[] = ['Mr', 'Ms', 'Mrs'];
 
 const UserCard = ({
   user,
@@ -103,46 +86,74 @@ function UserList({ users }: { users: ShortRequestUserProps[] }) {
   >({});
   const [open, setOpen] = useState(false);
   const [isAlert, setIsAlert] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const storeUsers = useSelector((state: any) => state.users.users);
   const dispatch = useDispatch();
-  const openEdit = (user: any) => {
+
+  const openEdit = (user: ShortRequestUserProps) => {
     setOpen(true);
-    {
-      setSelectedUser(user);
-    }
+    setSelectedUser(user);
   };
 
   const onSetIsAlert = (user: ShortRequestUserProps) => {
     setIsAlert(true);
     setSelectedUser(user);
   };
+
   const handleClose = () => setOpen(false);
+
   useEffect(() => {
     dispatch(setUsers(users));
   }, []);
 
   return (
-    <section className="grid md:grid-cols-2  place-items-center max-w-4xl w-full gap-x-5 gap-y-10">
-      {storeUsers?.map((user: ShortRequestUserProps) => (
-        <UserCard
-          onSetIsAlert={onSetIsAlert}
-          openEdit={openEdit}
-          key={user.uuid}
-          user={user}
+    <section className="grid">
+      <div>
+        <Input
+          className="w-full"
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search..."
         />
-      ))}
+      </div>
 
-      <UserEdit
-        selectedUser={selectedUser}
-        handleClose={handleClose}
-        open={open}
-      />
+      <div className="grid md:grid-cols-2 place-items-center max-w-4xl w-full gap-x-5 gap-y-10">
+        {storeUsers
+          .filter((user: ShortRequestUserProps) => {
+            const { name, email, uuid, location } = user;
+            const fullName = `${name?.first} ${name?.last}`.toLowerCase();
+            const lowerCaseSearchQuery = searchQuery.toLowerCase();
 
-      <ConfirmDelete
-        selectedUser={selectedUser}
-        isAlert={isAlert}
-        setIsAlert={setIsAlert}
-      />
+            return (
+              fullName.includes(lowerCaseSearchQuery) ||
+              email?.toLowerCase().includes(lowerCaseSearchQuery) ||
+              uuid?.toLowerCase().includes(lowerCaseSearchQuery) ||
+              location?.country?.toLowerCase().includes(lowerCaseSearchQuery) ||
+              location?.city?.toLowerCase().includes(lowerCaseSearchQuery)
+            );
+          })
+          .map((user: ShortRequestUserProps) => (
+            <UserCard
+              onSetIsAlert={onSetIsAlert}
+              openEdit={openEdit}
+              key={user.uuid}
+              user={user}
+            />
+          ))}
+
+        <UserEdit
+          selectedUser={selectedUser}
+          handleClose={handleClose}
+          open={open}
+        />
+
+        <ConfirmDelete
+          selectedUser={selectedUser}
+          isAlert={isAlert}
+          setIsAlert={setIsAlert}
+        />
+      </div>
     </section>
   );
 }

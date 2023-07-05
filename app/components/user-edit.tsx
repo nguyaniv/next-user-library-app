@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import * as yup from 'yup';
 import Modal from '@mui/material/Modal';
 import { TextField } from '@mui/material';
 import Image from 'next/image';
 import { useDispatch } from 'react-redux';
 import { editUser } from '../features/usersSlice';
 import Button from '@mui/material/Button';
+import { validationEditUserSchema } from '../lib/validates';
 
 function UserEdit({ selectedUser, handleClose, open }: any) {
   const [message, setMesssage] = useState('');
@@ -31,24 +31,10 @@ function UserEdit({ selectedUser, handleClose, open }: any) {
     setCity(selectedUser?.location?.city || '');
   }, [selectedUser]);
 
-  const validationSchema = yup.object({
-    title: yup.string().trim().required('Title is required'),
-    firstName: yup.string().trim().min(3, 'First name Minimum 3 character'),
-    lastName: yup.string().trim().min(3, 'Last name Minimum 3 character'),
-    streetName: yup.string().trim().required('Street name is required'),
-    streetNumber: yup.string().trim().required('Street number is required'),
-    city: yup.string().trim().required('City is required'),
-    country: yup.string().trim().required('Country is required'),
-    email: yup
-      .string()
-      .email('Must be a valid email')
-      .required('Email is required'),
-  });
-
   const onEditUser = async (e: any) => {
     e.preventDefault();
     try {
-      const isValid = await validationSchema.validate({
+      const isValid = await validationEditUserSchema.validate({
         title,
         email,
         firstName,

@@ -2,12 +2,10 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 export interface UsersState {
-  value: number;
   users: any[];
 }
 
 const initialState: UsersState = {
-  value: 0,
   users: [],
 };
 
@@ -67,7 +65,6 @@ export const usersSlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
 export const { setUsers, editUser, deleteUser, addUser } = usersSlice.actions;
 
 export default usersSlice.reducer;
