@@ -138,7 +138,8 @@ function UserList({ users }: { users: ShortRequestUserProps[] }) {
         {storeUsers
           .filter((user: ShortRequestUserProps) => {
             const { name, email, uuid, location } = user;
-            const fullName = `${name?.first} ${name?.last}`.toLowerCase();
+            const fullName =
+              `${name?.title} ${name?.first} ${name?.last}`.toLowerCase();
             const lowerCaseSearchQuery = searchQuery.toLowerCase();
 
             return (
