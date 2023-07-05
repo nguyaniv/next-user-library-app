@@ -186,10 +186,18 @@ function UserEdit({ selectedUser, handleClose, open }: any) {
           <div className="text-green-500 h-6">{successMessage}</div>
         </div>
         <div className="flex gap-y-5 items-center flex-col md:flex-row justify-between">
-          <Button type="submit" className="w-32" variant="contained">
+          <Button
+            type="submit"
+            className="w-32 bg-blue-500"
+            variant="contained"
+          >
             Save
           </Button>
-          <Button onClick={handleClose} className="w-32" variant="contained">
+          <Button
+            onClick={handleClose}
+            className="w-32 bg-yellow-500 hover:bg-yellow-600"
+            variant="contained"
+          >
             Close
           </Button>
         </div>
