@@ -133,7 +133,7 @@ function UserList({ users }: { users: ShortRequestUserProps[] }) {
 
       <div
         className="grid md:grid-cols-2 lg:grid-cols-3 place-items-center max-w-4xl lg:max-w-7xl 
-       md:gap-x-5 lg:gap-x-3 md:gap-y-5 lg:gap-y-10 "
+       md:gap-x-5 lg:gap-x-3 gap-y-5 lg:gap-y-10 "
       >
         {storeUsers
           .filter((user: ShortRequestUserProps) => {
