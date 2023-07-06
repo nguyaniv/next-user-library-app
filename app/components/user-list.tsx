@@ -35,7 +35,7 @@ const UserCard = ({
           md:grid place-items-center text-yellow-50 text-bold text-2xl
          ${
            isHovered ? 'z-50 bg-opacity-60' : '-z-50 opacity-0'
-         } w-full h-full  bg-black`}
+         } w-full h-full  bg-white`}
       >
         <div className="flex justify-between gap-x-5">
           <Button
@@ -54,7 +54,7 @@ const UserCard = ({
           </Button>
         </div>
       </div>
-      <div className="text-center text-xl grid bg-gray-600 text-yellow-50 ">
+      <div className="text-center text-xl grid bg-slate-200  text-blue-950 ">
         <div className="">
           {name?.title}
           {withPeriod.includes(name?.title) ? '.' : ''} {name?.last}
@@ -71,21 +71,21 @@ const UserCard = ({
         />
       </div>
 
-      <div className="grid bg-white text-yellow-50 px-3 gap-y-3 py-2 font-mono">
-        <div className="bg-gray-600 px-2 rounded-md">
+      <div className="grid bg-white text-yellow-50 px-3 gap-y-3 py-2 font-sans">
+        <div className="bg-slate-200  text-blue-950 px-2 rounded-md">
           <span className="font-bold">Name:</span>{' '}
           <span className="text-sm">
             {name?.title} {name?.last} {name?.first}
           </span>
         </div>
-        <div className="bg-gray-600 px-2 rounded-md ">
+        <div className="bg-slate-200  text-blue-950 px-2 rounded-md ">
           <span className="font-bold">Address:</span>{' '}
           <span className="text-sm">
             {location?.street?.name} {location?.street?.number},{' '}
             {location?.city}, {location?.country}
           </span>
         </div>
-        <div className="bg-gray-600 px-2 rounded-md  ">
+        <div className="bg-slate-200  text-blue-950 px-2 rounded-md  ">
           {' '}
           <span className="font-bold">Email:</span>{' '}
           <span className="text-sm">{email}</span>
