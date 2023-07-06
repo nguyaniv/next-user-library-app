@@ -96,7 +96,7 @@ function NewUserForm() {
         aria-describedby="modal-modal-description"
         open={isOpen}
         onClose={() => setIsOpen(false)}
-        className="grid place-items-center overflow-y-scroll overflow-y-visible "
+        className="grid place-items-center overflow-y-scroll md:overflow-y-visible "
       >
         <form
           onSubmit={onAddUser}
