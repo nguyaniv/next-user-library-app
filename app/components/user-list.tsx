@@ -27,11 +27,11 @@ const UserCard = ({
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="border shadow-xl grid rounded-xl py-5 bg-slate-50 gap-y-20 max-w-[22rem] w-full cursor-pointer relative h-[450px] "
+      className="border shadow-xl grid rounded-xl py-5 bg-slate-50 gap-y-20 max-w-[22rem] w-full cursor-pointer relative md:h-[450px] "
     >
       <div
-        className={`absolute transition-all rounded-xl  duration-500
-          grid place-items-center text-yellow-50 text-bold text-2xl
+        className={`absolute hidden transition-all rounded-xl  duration-500
+          md:grid place-items-center text-yellow-50 text-bold text-2xl
          ${
            isHovered ? 'z-50 bg-opacity-60' : '-z-50 opacity-0'
          } w-full h-full  bg-black`}
@@ -88,6 +88,22 @@ const UserCard = ({
           {' '}
           <span className="font-bold">Email:</span>{' '}
           <span className="text-sm">{email}</span>
+        </div>
+        <div className="flex md:hidden justify-center gap-x-5">
+          <Button
+            onClick={() => openEdit(user)}
+            className="!bg-green-500 hover:!bg-green-600 !text-white !border-green-600"
+            variant="outlined"
+          >
+            Edit
+          </Button>
+          <Button
+            onClick={async () => onSetIsAlert(user)}
+            className="!bg-red-500 hover:!bg-red-600 !text-white !border-red-600"
+            variant="contained"
+          >
+            Delete
+          </Button>
         </div>
       </div>
     </div>
