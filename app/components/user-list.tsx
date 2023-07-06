@@ -27,7 +27,7 @@ const UserCard = ({
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="border shadow-xl grid rounded-xl py-5 bg-slate-50 gap-y-20 max-w-[22rem] w-full cursor-pointer relative md:h-[450px] "
+      className="border shadow-xl grid rounded-xl py-5 bg-slate-50 gap-y-10 max-w-[22rem] w-full cursor-pointer relative md:h-[450px] "
     >
       <div
         className={`absolute hidden transition-all rounded-xl  duration-500
@@ -60,7 +60,7 @@ const UserCard = ({
         </div>
         <div className="font-bold"> {name?.first}</div>
       </div>
-      <div className="place-self-center absolute top-1/2 -translate-y-1/2 -mt-16 md:-mt-9 ">
+      <div className="place-self-center">
         <Image
           className="rounded-full border border-gray-300 "
           alt={`${name?.first} ${name?.last}`}
@@ -70,7 +70,7 @@ const UserCard = ({
         />
       </div>
 
-      <div className="grid bg-white text-yellow-50 px-3 gap-y-3 py-2 mt-28 font-mono">
+      <div className="grid bg-white text-yellow-50 px-3 gap-y-3 py-2 font-mono">
         <div className="bg-gray-600 px-2 rounded-md">
           <span className="font-bold">Name:</span>{' '}
           <span className="text-sm">
@@ -136,7 +136,7 @@ function UserList({ users }: { users: ShortRequestUserProps[] }) {
   }, []);
 
   return (
-    <section className="grid">
+    <section className="grid py-10">
       <div>
         <Input
           className="w-full my-4"
