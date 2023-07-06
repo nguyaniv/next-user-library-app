@@ -85,7 +85,7 @@ function NewUserForm() {
     <div>
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 rounded-lg border border-slate-700
+        className="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 w-32 rounded-lg border border-slate-700
        text-white bg-green-500 hover:bg-green-600 px-5 py-2"
       >
         Add user
@@ -96,7 +96,7 @@ function NewUserForm() {
         aria-describedby="modal-modal-description"
         open={isOpen}
         onClose={() => setIsOpen(false)}
-        className="grid place-items-center "
+        className="grid place-items-center overflow-y-scroll md:overflow-y-visible "
       >
         <form
           onSubmit={onAddUser}
