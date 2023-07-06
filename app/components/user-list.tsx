@@ -154,6 +154,9 @@ function UserList({ users }: { users: ShortRequestUserProps[] }) {
                 .includes(lowerCaseSearchQuery) ||
               `${name?.title} ${name?.last}`
                 .toLowerCase()
+                .includes(lowerCaseSearchQuery) ||
+              `${name?.title} ${name?.first}`
+                .toLowerCase()
                 .includes(lowerCaseSearchQuery)
             );
           })
