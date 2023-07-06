@@ -27,11 +27,11 @@ const UserCard = ({
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="border shadow-xl grid rounded-xl py-5 bg-slate-50 gap-y-20 max-w-[22rem] w-full cursor-pointer relative h-[450px] "
+      className="border shadow-xl grid rounded-xl py-5 bg-slate-50 gap-y-10 max-w-[22rem] w-full cursor-pointer relative md:h-[450px] "
     >
       <div
-        className={`absolute transition-all rounded-xl  duration-500
-          grid place-items-center text-yellow-50 text-bold text-2xl
+        className={`absolute hidden transition-all rounded-xl  duration-500
+          md:grid place-items-center text-yellow-50 text-bold text-2xl
          ${
            isHovered ? 'z-50 bg-opacity-60' : '-z-50 opacity-0'
          } w-full h-full  bg-black`}
@@ -60,7 +60,7 @@ const UserCard = ({
         </div>
         <div className="font-bold"> {name?.first}</div>
       </div>
-      <div className="place-self-center absolute top-1/2 -translate-y-1/2 -mt-9 ">
+      <div className="place-self-center">
         <Image
           className="rounded-full border border-gray-300 "
           alt={`${name?.first} ${name?.last}`}
@@ -70,7 +70,7 @@ const UserCard = ({
         />
       </div>
 
-      <div className="grid bg-white text-yellow-50 px-3 gap-y-3 py-2 mt-28 font-mono">
+      <div className="grid bg-white text-yellow-50 px-3 gap-y-3 py-2 font-mono">
         <div className="bg-gray-600 px-2 rounded-md">
           <span className="font-bold">Name:</span>{' '}
           <span className="text-sm">
@@ -88,6 +88,22 @@ const UserCard = ({
           {' '}
           <span className="font-bold">Email:</span>{' '}
           <span className="text-sm">{email}</span>
+        </div>
+        <div className="flex md:hidden justify-center gap-x-5">
+          <Button
+            onClick={() => openEdit(user)}
+            className="!bg-green-500 hover:!bg-green-600 !text-white !border-green-600"
+            variant="outlined"
+          >
+            Edit
+          </Button>
+          <Button
+            onClick={async () => onSetIsAlert(user)}
+            className="!bg-red-500 hover:!bg-red-600 !text-white !border-red-600"
+            variant="contained"
+          >
+            Delete
+          </Button>
         </div>
       </div>
     </div>
@@ -120,7 +136,7 @@ function UserList({ users }: { users: ShortRequestUserProps[] }) {
   }, []);
 
   return (
-    <section className="grid">
+    <section className="grid pb-20">
       <div>
         <Input
           className="w-full my-4"
@@ -153,6 +169,9 @@ function UserList({ users }: { users: ShortRequestUserProps[] }) {
                 ?.toLowerCase()
                 .includes(lowerCaseSearchQuery) ||
               `${name?.title} ${name?.last}`
+                .toLowerCase()
+                .includes(lowerCaseSearchQuery) ||
+              `${name?.title} ${name?.first}`
                 .toLowerCase()
                 .includes(lowerCaseSearchQuery)
             );
