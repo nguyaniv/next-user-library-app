@@ -27,7 +27,8 @@ const UserCard = ({
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="border shadow-xl grid rounded-xl py-5 bg-slate-50 gap-y-10 max-w-[22rem] w-full cursor-pointer relative md:h-[450px] "
+      className="border shadow-xl grid rounded-xl py-5 bg-slate-50 gap-y-10
+       max-w-[22rem] w-full cursor-pointer relative md:h-[481px] "
     >
       <div
         className={`absolute hidden transition-all rounded-xl  duration-500
