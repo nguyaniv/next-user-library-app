@@ -136,7 +136,7 @@ function UserList({ users }: { users: ShortRequestUserProps[] }) {
   }, []);
 
   return (
-    <section className="grid py-10">
+    <section className="grid pb-20">
       <div>
         <Input
           className="w-full my-4"
