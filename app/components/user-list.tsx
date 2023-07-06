@@ -60,7 +60,7 @@ const UserCard = ({
         </div>
         <div className="font-bold"> {name?.first}</div>
       </div>
-      <div className="place-self-center absolute top-1/2 -translate-y-1/2 -mt-9 ">
+      <div className="place-self-center absolute top-1/2 -translate-y-1/2 -mt-16 md:-mt-9 ">
         <Image
           className="rounded-full border border-gray-300 "
           alt={`${name?.first} ${name?.last}`}
